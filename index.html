@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destina Bayan Kuaförü | Ataşehir İstanbul</title>
+  <meta name="description" content="Destina Bayan Kuaförü için hazırlanan premium demo web sitesi. Ataşehir'de saç kesimi, keratin, makyaj ve renk uygulamaları için hızlı iletişim ve randevu odaklı tasarım." />
+  <meta property="og:title" content="Destina Bayan Kuaförü | Premium Salon Deneyimi" />
+  <meta property="og:description" content="Ataşehir'de premium kadın kuaförü deneyimi. Hızlı randevu, güçlü yorumlar ve modern salon sunumu." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#ead7cc" />
+  <style>
+    :root{
+      --bg:#fffaf7;
+      --bg-soft:#f7efe8;
+      --card:#fffdfb;
+      --text:#2e2422;
+      --muted:#7b6761;
+      --line:rgba(82,56,49,.12);
+      --accent:#c78f80;
+      --accent-2:#ead7cc;
+      --accent-3:#7d4d45;
+      --shadow:0 12px 40px rgba(89,62,53,.10);
+      --radius-xl:30px;
+      --radius-lg:22px;
+      --radius-md:16px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(234,215,204,.9), transparent 34%),
+        radial-gradient(circle at 90% 10%, rgba(199,143,128,.18), transparent 25%),
+        linear-gradient(180deg,#fffaf7 0%,#fff6f0 100%);
+      overflow-x:hidden;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+
+    .container{width:min(calc(100% - 32px), var(--max));margin:0 auto}
+    .section{padding:88px 0;position:relative}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;border-radius:999px;
+      background:rgba(255,255,255,.72);backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow:var(--shadow);font-size:.84rem;color:var(--accent-3);font-weight:700;
+      letter-spacing:.02em;
+    }
+    .eyebrow::before{content:"";width:8px;height:8px;border-radius:999px;background:linear-gradient(135deg,var(--accent),#f1c4b8)}
+    .title{font-size:clamp(2rem,5vw,4.8rem);line-height:.95;margin:20px 0 18px;letter-spacing:-.05em;max-width:12ch}
+    .lead{font-size:1.08rem;line-height:1.8;color:var(--muted);max-width:62ch}
+    .subhead{font-size:clamp(1.6rem,3vw,2.8rem);line-height:1.05;letter-spacing:-.04em;margin:0 0 14px}
+    .muted{color:var(--muted)}
+
+    .site-header{
+      position:sticky;top:0;z-index:40;
+      backdrop-filter:blur(16px);
+      background:rgba(255,250,247,.72);
+      border-bottom:1px solid rgba(98,72,63,.08);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+      min-height:76px;
+    }
+    .brand-wrap{display:flex;align-items:center;gap:14px}
+    .brand-mark{
+      width:48px;height:48px;border-radius:18px;
+      background:linear-gradient(135deg,#f7e2da,#c98f81 60%,#8f5f56);
+      box-shadow:0 14px 28px rgba(142,95,86,.22);
+      position:relative;overflow:hidden;
+    }
+    .brand-mark::before,
+    .brand-mark::after{
+      content:"";position:absolute;border-radius:999px;background:rgba(255,255,255,.38)
+    }
+    .brand-mark::before{width:50px;height:18px;left:-8px;top:10px;transform:rotate(-24deg)}
+    .brand-mark::after{width:28px;height:10px;right:-4px;bottom:10px;transform:rotate(-24deg)}
+    .brand-text strong{display:block;font-size:.98rem;letter-spacing:.02em}
+    .brand-text span{display:block;font-size:.8rem;color:var(--muted)}
+    .nav-links{display:flex;align-items:center;gap:24px}
+    .nav-links a{font-size:.95rem;color:#5f4b45}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:52px;padding:0 22px;border:none;border-radius:999px;
+      transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+      cursor:pointer;font-weight:700
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent-3),var(--accent));
+      color:#fff;box-shadow:0 18px 30px rgba(125,77,69,.24)
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.78);color:var(--text);
+      border:1px solid rgba(111,82,74,.12);box-shadow:var(--shadow)
+    }
+
+    .menu-toggle{display:none;background:none;border:none;padding:8px}
+    .menu-toggle span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0;border-radius:2px}
+
+    .hero{padding:52px 0 48px;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:center}
+    .hero-copy{padding:36px 0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin:28px 0 30px}
+    .hero-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .mini-stat{
+      background:rgba(255,255,255,.72);border:1px solid rgba(104,70,60,.08);
+      border-radius:20px;padding:18px;box-shadow:var(--shadow)
+    }
+    .mini-stat strong{display:block;font-size:1.2rem;margin-bottom:6px}
+    .mini-stat span{font-size:.92rem;color:var(--muted);line-height:1.5}
+
+    .hero-visual{
+      position:relative;min-height:650px;
+      display:grid;place-items:center
+    }
+    .visual-main{
+      width:min(100%,540px);height:650px;border-radius:34px;padding:20px;
+      background:linear-gradient(180deg,rgba(255,255,255,.74),rgba(255,255,255,.52));
+      border:1px solid rgba(255,255,255,.8);
+      box-shadow:0 30px 80px rgba(93,65,58,.16);
+      backdrop-filter:blur(18px);
+      position:relative;overflow:hidden
+    }
+    .visual-main::before{
+      content:"";position:absolute;inset:0;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(250,219,208,.55), transparent 20%),
+        radial-gradient(circle at 30% 80%, rgba(201,143,129,.16), transparent 26%),
+        linear-gradient(135deg, rgba(255,255,255,.4), transparent 45%);
+      pointer-events:none;
+    }
+    .art-card{
+      position:relative;height:100%;border-radius:28px;overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(255,248,244,.95), rgba(247,232,225,.92)),
+        linear-gradient(135deg, #f7e6de 0%, #f4d4cb 38%, #e7bfb3 100%);
+      border:1px solid rgba(122,85,77,.08)
+    }
+    .art-card::before{
+      content:"";position:absolute;inset:22px;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,.92), transparent 26%),
+        radial-gradient(circle at 78% 30%, rgba(206,144,127,.42), transparent 28%),
+        radial-gradient(circle at 55% 75%, rgba(124,77,68,.12), transparent 32%),
+        linear-gradient(160deg, rgba(255,255,255,.5), rgba(255,255,255,.04));
+    }
+    .art-badge,
+    .floating-card{
+      position:absolute;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.75);box-shadow:var(--shadow)
+    }
+    .art-badge{left:26px;top:24px;border-radius:18px;padding:14px 16px;max-width:220px}
+    .art-badge strong{display:block;font-size:.94rem;margin-bottom:5px}
+    .art-badge span{font-size:.83rem;color:var(--muted);line-height:1.5}
+    .floating-card{right:18px;bottom:20px;border-radius:20px;padding:18px;max-width:230px}
+    .floating-card strong{display:block;font-size:1.55rem;line-height:1}
+    .floating-card span{display:block;font-size:.88rem;color:var(--muted);margin-top:8px;line-height:1.5}
+
+    .glow{position:absolute;border-radius:999px;filter:blur(40px);opacity:.55;pointer-events:none}
+    .glow.one{width:180px;height:180px;right:-30px;top:60px;background:rgba(233,180,161,.45)}
+    .glow.two{width:220px;height:220px;left:-40px;bottom:30px;background:rgba(241,223,213,.75)}
+
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .trust-card,.service-card,.review-card,.faq-item,.contact-card,.gallery-card,.cta-panel,.hours-card,.before-card{
+      background:rgba(255,255,255,.74);border:1px solid rgba(110,80,72,.08);box-shadow:var(--shadow)
+    }
+    .trust-card{padding:24px;border-radius:24px}
+    .trust-card h3,.service-card h3,.review-card h3,.faq-item h3{margin:0 0 10px;font-size:1.06rem}
+    .trust-card p,.service-card p,.review-card p,.faq-item p{margin:0;color:var(--muted);line-height:1.7}
+    .icon{
+      width:46px;height:46px;border-radius:16px;display:grid;place-items:center;margin-bottom:16px;
+      background:linear-gradient(135deg,rgba(199,143,128,.18),rgba(234,215,204,.82));
+      color:var(--accent-3);font-weight:800
+    }
+
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:30px}
+    .section-head .lead{max-width:56ch;margin:0}
+
+    .before-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+    .before-stage{
+      position:relative;border-radius:30px;overflow:hidden;min-height:520px;
+      background:linear-gradient(160deg,#fff6f1,#f7e6dd 52%,#edd7cd);
+      border:1px solid rgba(106,74,67,.08);box-shadow:var(--shadow)
+    }
+    .split-panel{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr}
+    .split-col{position:relative;padding:28px}
+    .split-col::before{
+      content:"";position:absolute;inset:20px;border-radius:24px;overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,.85), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.04)),
+        linear-gradient(145deg, rgba(205,174,164,.35), rgba(133,89,80,.28));
+      border:1px solid rgba(255,255,255,.4)
+    }
+    .split-col.after::before{
+      background:
+        radial-gradient(circle at 52% 18%, rgba(255,255,255,.92), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.56), rgba(255,255,255,.04)),
+        linear-gradient(145deg, rgba(248,224,214,.45), rgba(190,131,116,.42));
+    }
+    .split-label{
+      position:absolute;left:36px;bottom:36px;z-index:2;padding:10px 14px;border-radius:999px;
+      background:rgba(255,255,255,.84);backdrop-filter:blur(10px);font-weight:700;font-size:.88rem
+    }
+    .divider{
+      position:absolute;top:0;bottom:0;left:50%;width:3px;transform:translateX(-50%);
+      background:linear-gradient(180deg,transparent,var(--accent-3),transparent);z-index:2
+    }
+    .handle{
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;
+      width:74px;height:74px;border-radius:999px;background:#fff;display:grid;place-items:center;
+      box-shadow:0 20px 40px rgba(90,61,54,.18);font-weight:800;color:var(--accent-3)
+    }
+    .before-side{display:grid;gap:18px}
+    .before-card{padding:24px;border-radius:24px}
+
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service-card{padding:24px;border-radius:26px;position:relative;overflow:hidden}
+    .service-card::after{
+      content:"";position:absolute;right:-18px;top:-18px;width:92px;height:92px;border-radius:28px;
+      background:linear-gradient(135deg,rgba(199,143,128,.18),rgba(255,255,255,.02));
+      transform:rotate(18deg)
+    }
+    .service-tag{display:inline-flex;padding:9px 12px;border-radius:999px;background:rgba(199,143,128,.12);font-size:.78rem;font-weight:800;color:var(--accent-3);margin-bottom:16px}
+
+    .review-shell{position:relative}
+    .review-track{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(280px,1fr);gap:18px;overflow:auto;scrollbar-width:none;padding-bottom:8px}
+    .review-track::-webkit-scrollbar{display:none}
+    .review-card{padding:24px;border-radius:24px;min-height:250px}
+    .review-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+    .review-name{font-weight:800}
+    .stars{letter-spacing:.12em;color:var(--accent-3);font-size:.92rem}
+
+    .gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:18px}
+    .gallery-card{border-radius:28px;overflow:hidden;position:relative;padding:22px}
+    .gallery-card.large{grid-row:1 / span 2}
+    .gallery-card::before{
+      content:"";position:absolute;inset:0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(44,28,24,.22)),
+        radial-gradient(circle at top left, rgba(255,255,255,.45), transparent 30%),
+        linear-gradient(145deg, #f7e4dc, #e8c7bc 58%, #b98b7e);
+    }
+    .gallery-card:nth-child(2)::before{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(44,28,24,.22)), radial-gradient(circle at top left, rgba(255,255,255,.45), transparent 30%), linear-gradient(145deg, #fff0ea, #f3dacd 58%, #d6a69a)}
+    .gallery-card:nth-child(3)::before{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(44,28,24,.22)), radial-gradient(circle at top left, rgba(255,255,255,.45), transparent 30%), linear-gradient(145deg, #f9ebe4, #edd3ca 58%, #c69c91)}
+    .gallery-card:nth-child(4)::before{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(44,28,24,.22)), radial-gradient(circle at top left, rgba(255,255,255,.45), transparent 30%), linear-gradient(145deg, #fff8f2, #f1ddd3 58%, #d0a394)}
+    .gallery-card > *{position:relative;z-index:1}
+    .gallery-card span{display:inline-flex;padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.78);font-size:.8rem;font-weight:800;color:#5c433d}
+    .gallery-card h3{margin:12px 0 0;font-size:1.2rem;color:#fff;max-width:12ch;line-height:1.05}
+
+    .cta-panel{padding:34px;border-radius:30px;display:flex;align-items:center;justify-content:space-between;gap:18px;background:linear-gradient(135deg,#7d4d45,#b9786b 62%,#d3a59a);color:#fff}
+    .cta-panel p{margin:10px 0 0;max-width:52ch;line-height:1.7;color:rgba(255,255,255,.82)}
+    .cta-panel .btn-secondary{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.24)}
+
+    .faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .faq-item{padding:24px;border-radius:24px}
+
+    .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:stretch}
+    .contact-stack{display:grid;gap:18px}
+    .contact-card,.hours-card{padding:24px;border-radius:26px}
+    .contact-card h3,.hours-card h3{margin:0 0 14px}
+    .contact-list{display:grid;gap:14px}
+    .contact-item{padding:14px 0;border-bottom:1px solid var(--line)}
+    .contact-item:last-child{border-bottom:none;padding-bottom:0}
+    .label{display:block;font-size:.8rem;font-weight:800;color:var(--accent-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+    .map-frame{min-height:100%;border-radius:28px;overflow:hidden;border:1px solid rgba(110,80,72,.08);box-shadow:var(--shadow);background:#fff}
+    .map-frame iframe{width:100%;height:100%;min-height:620px;border:0}
+
+    .hours-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+    .hours-row:last-child{border-bottom:none;padding-bottom:0}
+    .hours-row span:last-child{font-weight:700}
+
+    footer{padding:28px 0 110px;border-top:1px solid rgba(97,73,64,.08)}
+    .footer-grid{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted)}
+    .footer-note{color:var(--muted);font-size:.92rem}
+
+    .floating-cta{
+      position:fixed;left:16px;right:16px;bottom:16px;z-index:45;
+      display:none;grid-template-columns:1fr 1fr;gap:12px
+    }
+
+    [data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease}
+    [data-reveal].is-visible{opacity:1;transform:none}
+
+    @media (max-width: 1080px){
+      .hero-grid,.before-wrap,.contact-grid{grid-template-columns:1fr}
+      .grid-4{grid-template-columns:repeat(2,1fr)}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:260px 220px 220px}
+      .gallery-card.large{grid-column:1 / span 2;grid-row:auto}
+      .hero-visual{min-height:auto}
+      .visual-main{height:560px}
+      .cta-panel{flex-direction:column;align-items:flex-start}
+    }
+
+    @media (max-width: 780px){
+      .section{padding:72px 0}
+      .nav-links,.nav-actions{display:none}
+      .menu-toggle{display:block}
+      .nav.open .mobile-menu{display:grid}
+      .mobile-menu{
+        display:none;gap:12px;padding:0 0 18px;
+      }
+      .mobile-menu a,.mobile-menu .btn{width:100%}
+      .hero{padding-top:24px}
+      .title{max-width:13ch}
+      .hero-mini,.faq-grid,.grid-4,.services-grid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}
+      .gallery-card,.gallery-card.large{min-height:220px}
+      .section-head{flex-direction:column;align-items:flex-start}
+      .review-track{grid-auto-columns:86%}
+      .floating-cta{display:grid}
+      .map-frame iframe{min-height:360px}
+      .handle{width:62px;height:62px}
+      .split-label{left:28px;bottom:28px}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *{animation:none !important;transition:none !important}
+      [data-reveal]{opacity:1;transform:none}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Destina Bayan Kuaförü",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Örnek, Yunus Emre Cd No:36",
+      "addressLocality": "Ataşehir",
+      "addressRegion": "İstanbul",
+      "addressCountry": "TR"
+    },
+    "telephone": "+90 538 449 96 75",
+    "url": "https://www.instagram.com/destinakuafor.34/",
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"09:00","closes":"21:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"09:00","closes":"21:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"09:00","closes":"21:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"09:00","closes":"21:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"21:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:30","closes":"21:00"}
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "242"
+    },
+    "sameAs": ["https://www.instagram.com/destinakuafor.34/"]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav" id="navRoot">
+      <a class="brand-wrap" href="#top" aria-label="Destina Bayan Kuaförü anasayfa">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <strong>Destina Bayan Kuaförü</strong>
+          <span>Ataşehir · İstanbul</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Ana menü">
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#yorumlar">Yorumlar</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="tel:+905384499675">Ara</a>
+        <a class="btn btn-primary" href="https://wa.me/905384499675?text=Merhaba%20Destina%20Bayan%20Kuaf%C3%B6r%C3%BC%20i%C3%A7in%20randevu%20almak%20istiyorum" target="_blank" rel="noreferrer">WhatsApp</a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu" id="menuBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="container mobile-menu" id="mobileMenu">
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#yorumlar">Yorumlar</a>
+      <a href="#iletisim">İletişim</a>
+      <a class="btn btn-secondary" href="tel:+905384499675">Telefonla Ara</a>
+      <a class="btn btn-primary" href="https://wa.me/905384499675?text=Merhaba%20Destina%20Bayan%20Kuaf%C3%B6r%C3%BC%20i%C3%A7in%20randevu%20almak%20istiyorum" target="_blank" rel="noreferrer">WhatsApp'tan Yaz</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy" data-reveal>
+          <div class="eyebrow">4.8 puan · 242 yorum · Ataşehir</div>
+          <h1 class="title">Saçınızın fark edilmesini istiyorsanız doğru yerdesiniz</h1>
+          <p class="lead">Destina Bayan Kuaförü; saç kesimi, renk uygulamaları, keratin ve makyaj hizmetlerinde güven veren yorumları ve güçlü ekibiyle Ataşehir'de premium salon deneyimi sunar.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/905384499675?text=Merhaba%20Destina%20Bayan%20Kuaf%C3%B6r%C3%BC%20i%C3%A7in%20randevu%20almak%20istiyorum" target="_blank" rel="noreferrer">Hemen Randevu Al</a>
+            <a class="btn btn-secondary" href="tel:+905384499675">Telefonla Ara</a>
+            <a class="btn btn-secondary" href="#yorumlar">Yorumları Gör</a>
+          </div>
+          <div class="hero-mini">
+            <div class="mini-stat">
+              <strong>242+</strong>
+              <span>Güven veren müşteri yorumu</span>
+            </div>
+            <div class="mini-stat">
+              <strong>09:00–21:00</strong>
+              <span>Haftanın çoğu günü uzun çalışma saatleri</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Premium</strong>
+              <span>Kesimden renge uzanan özenli salon deneyimi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" data-reveal>
+          <div class="glow one"></div>
+          <div class="glow two"></div>
+          <div class="visual-main">
+            <div class="art-card">
+              <div class="art-badge">
+                <strong>Güçlü ilk izlenim</strong>
+                <span>Kesim, renk ve bakım hizmetlerinde özenli dokunuşlarıyla öne çıkan salon deneyimi</span>
+              </div>
+              <div class="floating-card">
+                <strong>4.8★</strong>
+                <span>Yorumlarda en çok öne çıkan şey samimiyet, memnuniyet ve güven hissi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid-4">
+          <article class="trust-card" data-reveal>
+            <div class="icon">01</div>
+            <h3>Güven veren yorumlar</h3>
+            <p>242 yorum ve 4.8 puan, yeni müşteriler için güçlü bir ilk güven sinyali oluşturur.</p>
+          </article>
+          <article class="trust-card" data-reveal>
+            <div class="icon">02</div>
+            <h3>Uzun çalışma saatleri</h3>
+            <p>Haftanın çoğu günü 09:00–21:00 hizmet vererek randevu planlamasını kolaylaştırır.</p>
+          </article>
+          <article class="trust-card" data-reveal>
+            <div class="icon">03</div>
+            <h3>Çok yönlü hizmet</h3>
+            <p>Kesim, keratin, makyaj, renk, kaynak ve bakım işlemleriyle tek noktada güçlü salon deneyimi.</p>
+          </article>
+          <article class="trust-card" data-reveal>
+            <div class="icon">04</div>
+            <h3>Kolay iletişim</h3>
+            <p>Telefon ve WhatsApp üzerinden hızlı dönüş odaklı ulaşım akışıyla randevu süreci sadeleşir.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container before-wrap">
+        <div class="before-stage" data-reveal>
+          <div class="split-panel">
+            <div class="split-col before">
+              <div class="split-label">Önce</div>
+            </div>
+            <div class="split-col after">
+              <div class="split-label">Sonra</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="handle">⇄</div>
+        </div>
+        <div class="before-side">
+          <div>
+            <div class="eyebrow">Öncesi Sonrası Etkisi</div>
+            <h2 class="subhead">İyi bir dokunuş ilk bakışta fark edilir</h2>
+            <p class="lead">Destina'nın yorumlarında en sık geçen şeylerden biri, saçın özenle ele alınması ve sonuçtan duyulan güçlü memnuniyet. Bu alan, sosyal medyada veya gerçek salon görselleriyle daha da etkileyici hale getirilebilir.</p>
+          </div>
+          <article class="before-card" data-reveal>
+            <h3>Kesim ve bakım farkı</h3>
+            <p class="muted">Butterfly kesim, keratin uygulamaları ve renk işlemleri gibi sonuç odaklı hizmetler bu alanda güçlü şekilde öne çıkarılabilir.</p>
+          </article>
+          <article class="before-card" data-reveal>
+            <h3>Mobilde kaydırmalı deneyim</h3>
+            <p class="muted">Ziyaretçi dokunduğunda duran, sonra devam eden hafif bir geçiş hissiyle premium ama hafif bir sunum hedeflenmiştir.</p>
+          </article>
+          <a class="btn btn-primary" href="https://wa.me/905384499675?text=Merhaba%20Destina%20Bayan%20Kuaf%C3%B6r%C3%BC%20i%C3%A7in%20randevu%20almak%20istiyorum" target="_blank" rel="noreferrer">Randevu İçin Yaz</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="hizmetler">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <div class="eyebrow">Hizmetler</div>
+            <h2 class="subhead">Salonun öne çıkan uygulamaları</h2>
+          </div>
+          <p class="lead">Verilen hizmetler; saç görünümünü dönüştüren işlemlerle günlük bakım ihtiyaçlarını aynı çatı altında buluşturur.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card" data-reveal>
+            <span class="service-tag">Öne Çıkan</span>
+            <h3>Saç Kesimi</h3>
+            <p>Yorumlarda öne çıkan özenli kesim deneyimiyle yüz hatlarına ve stile uygun sonuç hedeflenir.</p>
+          </article>
+          <article class="service-card" data-reveal>
+            <span class="service-tag">Dönüşüm</span>
+            <h3>Keratin Tedavileri</h3>
+            <p>Daha yumuşak, kontrollü ve parlak görünüm için bakım odaklı uygulama hissi sunar.</p>
+          </article>
+          <article class="service-card" data-reveal>
+            <span class="service-tag">Renk</span>
+            <h3>Saç Boyama</h3>
+            <p>Saç boyama ve ışıltı uygulamalarıyla görünüm tazelenir ve daha canlı bir sonuç hedeflenir.</p>
+          </article>
+          <article class="service-card" data-reveal>
+            <span class="service-tag">Şekillendirme</span>
+            <h3>Fön & Düzleştirme</h3>
+            <p>Günlük şıklık ya da özel gün hazırlığı için pürüzsüz ve özenli bitişler sunulur.</p>
+          </article>
+          <article class="service-card" data-reveal>
+            <span class="service-tag">Hacim</span>
+            <h3>Saç Kaynaklama</h3>
+            <p>Uzunluk ve yoğunluk isteyen müşteriler için güçlü dönüşüm potansiyeli taşıyan uygulama.</p>
+          </article>
+          <article class="service-card" data-reveal>
+            <span class="service-tag">Tamamlayıcı</span>
+            <h3>Makyaj & Örgü</h3>
+            <p>Özel gün hazırlıklarında görünümü tamamlayan detaylarla çok yönlü salon deneyimi oluşturur.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="yorumlar">
+      <div class="container review-shell">
+        <div class="section-head" data-reveal>
+          <div>
+            <div class="eyebrow">Gerçek Yorumlar</div>
+            <h2 class="subhead">Salon hakkında güven oluşturan geri bildirimler</h2>
+          </div>
+          <p class="lead">Müşterilerin kendi cümleleriyle anlattığı deneyimler, salonun sıcaklığını ve memnuniyet hissini doğrudan yansıtır.</p>
+        </div>
+
+        <div class="review-track" id="reviewTrack">
+          <article class="review-card" data-reveal>
+            <div class="review-top">
+              <div>
+                <div class="review-name">Sude Der</div>
+                <div class="muted">5 ay önce</div>
+              </div>
+              <div class="stars">★★★★★</div>
+            </div>
+            <p>"Yoldan çevrilip saçım soruldu" diyerek anlattığı deneyimde butterfly kesim ve keratin botox sonrası aldığı sonuçtan çok memnun kaldığını vurguluyor.</p>
+          </article>
+
+          <article class="review-card" data-reveal>
+            <div class="review-top">
+              <div>
+                <div class="review-name">Ayşenur Satılmış</div>
+                <div class="muted">6 ay önce</div>
+              </div>
+              <div class="stars">★★★★★</div>
+            </div>
+            <p>Yıllardır müdavimi olduğunu söylüyor ve saç, kaş, manikür, makyaj gibi işlemlerin tek ekipte kusursuz ilerlemesini özellikle öne çıkarıyor.</p>
+          </article>
+
+          <article class="review-card" data-reveal>
+            <div class="review-top">
+              <div>
+                <div class="review-name">İrem Akdağ</div>
+                <div class="muted">5 ay önce</div>
+              </div>
+              <div class="stars">★★★★★</div>
+            </div>
+            <p>Saçının milim milim özenle kesildiğini belirtiyor ve İstanbul'da gönül rahatlığıyla tercih edilebilecek bir salon olduğunu söylüyor.</p>
+          </article>
+
+          <article class="review-card" data-reveal>
+            <div class="review-top">
+              <div>
+                <div class="review-name">Aleyna Demir</div>
+                <div class="muted">9 ay önce</div>
+              </div>
+              <div class="stars">★★★★★</div>
+            </div>
+            <p>Çalışanların yaklaşımından yapılan işlemlere kadar her detaydan memnun kaldığını, saç kesimi ve boyama deneyiminin başarılı geçtiğini ifade ediyor.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <div class="eyebrow">Salon Vibe</div>
+            <h2 class="subhead">Yumuşak tonlar modern çizgiler ve güven veren bir his</h2>
+          </div>
+          <p class="lead">Bu demo, elde profesyonel salon fotoğrafları olmasa bile premium bir görünüm hissi vermek için estetik placeholder bloklarla kurgulandı.</p>
+        </div>
+        <div class="gallery-grid">
+          <article class="gallery-card large" data-reveal>
+            <span>Premium Atmosfer</span>
+            <h3>İlk bakışta özenli ve rafine bir salon hissi</h3>
+          </article>
+          <article class="gallery-card" data-reveal>
+            <span>Renk Uygulamaları</span>
+            <h3>Işıltı ve canlı ton etkisi</h3>
+          </article>
+          <article class="gallery-card" data-reveal>
+            <span>Bakım Rutini</span>
+            <h3>Keratin ve pürüzsüz bitiş</h3>
+          </article>
+          <article class="gallery-card" data-reveal>
+            <span>Özel Gün Hazırlığı</span>
+            <h3>Makyaj ve tamamlayıcı dokunuşlar</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-panel" data-reveal>
+          <div>
+            <h2 class="subhead" style="margin:0;color:#fff">Bugün iletişime geçin ve randevunuzu kolayca planlayın</h2>
+            <p>Yoğun saatlerde yerinizi erkenden ayırmak, özellikle bakım ve dönüşüm odaklı işlemlerde daha rahat planlama sağlar.</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a class="btn btn-secondary" href="tel:+905384499675">Hemen Ara</a>
+            <a class="btn btn-secondary" href="https://wa.me/905384499675?text=Merhaba%20Destina%20Bayan%20Kuaf%C3%B6r%C3%BC%20i%C3%A7in%20randevu%20almak%20istiyorum" target="_blank" rel="noreferrer">WhatsApp'tan Yaz</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <div class="eyebrow">Sık Sorulanlar</div>
+            <h2 class="subhead">Karar vermeyi kolaylaştıran kısa cevaplar</h2>
+          </div>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-item" data-reveal>
+            <h3>Hangi hizmetler öne çıkıyor</h3>
+            <p>Saç kesimi, keratin tedavileri, saç boyama, düzleştirme, saç kaynaklama ve makyaj hizmetleri öne çıkıyor.</p>
+          </article>
+          <article class="faq-item" data-reveal>
+            <h3>İletişim için en hızlı yol hangisi</h3>
+            <p>Telefon ve WhatsApp bağlantıları sayesinde hızlı şekilde ulaşabilir ve randevu planlaması yapabilirsiniz.</p>
+          </article>
+          <article class="faq-item" data-reveal>
+            <h3>Haftanın hangi günleri açık</h3>
+            <p>Pazartesi hariç haftanın geri kalan günlerinde hizmet verilir. Pazar günü 09:30'da açılır.</p>
+          </article>
+          <article class="faq-item" data-reveal>
+            <h3>Salon hakkında güven verici bir şey var mı</h3>
+            <p>4.8 puan ve 242 yorum, özellikle yeni müşteriler için güçlü bir güven işareti oluşturur.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="iletisim">
+      <div class="container contact-grid">
+        <div class="contact-stack">
+          <article class="contact-card" data-reveal>
+            <h3>İletişim</h3>
+            <div class="contact-list">
+              <div class="contact-item">
+                <span class="label">Telefon</span>
+                <a href="tel:+905384499675">0538 449 96 75</a>
+              </div>
+              <div class="contact-item">
+                <span class="label">WhatsApp</span>
+                <a href="https://wa.me/905384499675?text=Merhaba%20Destina%20Bayan%20Kuaf%C3%B6r%C3%BC%20i%C3%A7in%20randevu%20almak%20istiyorum" target="_blank" rel="noreferrer">Randevu için yazın</a>
+              </div>
+              <div class="contact-item">
+                <span class="label">Instagram</span>
+                <a href="https://www.instagram.com/destinakuafor.34/" target="_blank" rel="noreferrer">@destinakuafor.34</a>
+              </div>
+              <div class="contact-item">
+                <span class="label">Adres</span>
+                <span>Örnek, Yunus Emre Cd No:36, 34704 Ataşehir / İstanbul</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="hours-card" data-reveal>
+            <h3>Çalışma Saatleri</h3>
+            <div class="hours-row"><span>Salı</span><span>09:00–21:00</span></div>
+            <div class="hours-row"><span>Çarşamba</span><span>09:00–21:00</span></div>
+            <div class="hours-row"><span>Perşembe</span><span>09:00–21:00</span></div>
+            <div class="hours-row"><span>Cuma</span><span>09:00–21:00</span></div>
+            <div class="hours-row"><span>Cumartesi</span><span>09:00–21:00</span></div>
+            <div class="hours-row"><span>Pazar</span><span>09:30–21:00</span></div>
+            <div class="hours-row"><span>Pazartesi</span><span>Kapalı</span></div>
+          </article>
+        </div>
+
+        <div class="map-frame" data-reveal>
+          <iframe
+            title="Destina Bayan Kuaförü konum"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=%C3%96rnek%20Yunus%20Emre%20Cd%20No%2036%20Ata%C5%9Fehir%20%C4%B0stanbul&z=15&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>Destina Bayan Kuaförü</strong>
+        <div class="footer-note">Ataşehir'de modern, güven veren ve hızlı iletişim odaklı premium salon sunumu</div>
+      </div>
+      <div class="footer-links">
+        <a href="#top">Anasayfa</a>
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#yorumlar">Yorumlar</a>
+        <a href="#iletisim">İletişim</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-cta">
+    <a class="btn btn-secondary" href="tel:+905384499675">Ara</a>
+    <a class="btn btn-primary" href="https://wa.me/905384499675?text=Merhaba%20Destina%20Bayan%20Kuaf%C3%B6r%C3%BC%20i%C3%A7in%20randevu%20almak%20istiyorum" target="_blank" rel="noreferrer">WhatsApp</a>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navRoot = document.getElementById('navRoot');
+
+    if(menuBtn){
+      menuBtn.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        mobileMenu.style.display = expanded ? 'none' : 'grid';
+      });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        if(window.innerWidth <= 780 && mobileMenu){
+          mobileMenu.style.display = 'none';
+          menuBtn?.setAttribute('aria-expanded','false');
+        }
+      });
+    });
+
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if(prefersReducedMotion){
+      reveals.forEach(el => el.classList.add('is-visible'));
+    } else {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+      reveals.forEach(el => revealObserver.observe(el));
+    }
+
+    const reviewTrack = document.getElementById('reviewTrack');
+    let autoScroll;
+
+    function startAutoScroll(){
+      if(!reviewTrack || window.innerWidth < 781 || prefersReducedMotion) return;
+      stopAutoScroll();
+      autoScroll = setInterval(() => {
+        const maxScroll = reviewTrack.scrollWidth - reviewTrack.clientWidth;
+        const next = reviewTrack.scrollLeft + 320;
+        reviewTrack.scrollTo({ left: next >= maxScroll ? 0 : next, behavior: 'smooth' });
+      }, 3600);
+    }
+
+    function stopAutoScroll(){
+      if(autoScroll) clearInterval(autoScroll);
+    }
+
+    reviewTrack?.addEventListener('pointerdown', stopAutoScroll);
+    reviewTrack?.addEventListener('pointerup', startAutoScroll);
+    window.addEventListener('resize', startAutoScroll);
+    startAutoScroll();
+  </script>
+</body>
+</html>
